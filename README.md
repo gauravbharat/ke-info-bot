@@ -1,5 +1,5 @@
 # Khata-Easy info AI bot
----
+
 ### Info
 - This bot is intended to be added below the FAQs section on the KE landing page.
 - No sign in required

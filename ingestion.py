@@ -1,8 +1,9 @@
 import asyncio
+from langchain_community.document_loaders import JSONLoader
 
 
 async def ingest():
-    # 1. Load JSON files data each with json file name and a url based on the file name
+    # 1. Load JSON files data each with json file name and url based on the file name
 
     # 2. Split data into separate, semantically meaningful chunks
 
