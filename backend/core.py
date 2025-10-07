@@ -1,5 +1,4 @@
 import os
-from dotenv import load_dotenv
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.history_aware_retriever import create_history_aware_retriever
 from langchain.chains.retrieval import create_retrieval_chain
@@ -9,8 +8,7 @@ from langchain_community.vectorstores.faiss import FAISS
 from langchain_google_genai import GoogleGenerativeAI
 from langchain import hub
 from typing import List, Dict, Any
-
-load_dotenv()
+import streamlit as st
 
 
 # Join the page content from the Document object list
@@ -27,6 +25,7 @@ def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
     print("\n* STEP 1 *")
     print("Loading embeddings...")
     embeddings = OpenAIEmbeddings(
+        api_key=st.secrets.get("OPENAI_API_KEY"),
         model="text-embedding-3-small",
         show_progress_bar=False,
         chunk_size=50,
@@ -42,7 +41,7 @@ def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
     # 2. init llm
     print("* STEP 2 *")
     print("Initialising GoogleGenerativeAI model gemini-2.5-flash-lite...")
-    llm = GoogleGenerativeAI(model="gemini-2.5-flash-lite")
+    llm = GoogleGenerativeAI(api_key=st.secrets.get("GOOGLE_API_KEY"), model="gemini-2.5-flash-lite")
 
     # 3. create retrieval chat prompt and stuff documents
     print("* STEP 3 *")
