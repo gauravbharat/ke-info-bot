@@ -293,22 +293,6 @@ def main():
                     st.chat_message("assistant").write(gen_response)
                     st.markdown("---")
 
-    # # Admin section in sidebar
-    # with st.sidebar:
-    #     st.markdown("---")
-    #     st.markdown("### 🔧 Admin")
-    #
-    #     if st.button("🔄 Reset Session", help="Clear all chat history and start fresh"):
-    #         for key in list(st.session_state.keys()):
-    #             del st.session_state[key]
-    #         st.rerun()
-    #
-    #     # Show CAPTCHA info for debugging
-    #     if st.checkbox("Show debug info", False):
-    #         if "captcha_problem" in st.session_state:
-    #             st.write(f"CAPTCHA: {st.session_state.captcha_problem} = {st.session_state.captcha_answer}")
-    #         st.write("Session keys:", list(st.session_state.keys()))
-
 
 if __name__ == "__main__":
     main()
