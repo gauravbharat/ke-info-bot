@@ -60,9 +60,9 @@ def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
       MESSAGES_LIST
       chat_history
       
-      if anyone asks for subscription cost, try to search subscription options of trial and regular paid instead of 
-      commission in the context. if the answer is already provided in the chat_history, say so that already answered. 
-      if the answer is not provided in the context say "Sorry, answer is outside of my context data. For more 
+      if anyone asks for cost, price or subscription cost, try to search subscription options of trial and regular paid 
+      instead of commission in the context. if the answer is already provided in the chat_history, say so that already 
+      answered. if the answer is not provided in the context say "Sorry, answer is outside of my context data. For more 
       information, please visit https://khataeasy.com"  
       HUMAN
       {input}
