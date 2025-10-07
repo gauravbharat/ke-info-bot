@@ -232,9 +232,9 @@ def main():
     if current_usage < 1:
         st.toast("✅ Verification complete! You can now ask your questions.", icon="✅")
 
-    remaining = (MAX_CHAT_HISTORY - current_usage) if current_usage > 0 else MAX_CHAT_HISTORY
-    if remaining > 0:
-        st.info(f"💡 You have **{remaining}** question{'s' if remaining > 1 else ''} remaining in this session")
+    # remaining = (MAX_CHAT_HISTORY - current_usage) if current_usage > 0 else MAX_CHAT_HISTORY
+    # if remaining > 0:
+    #     st.info(f"💡 You have **{remaining}** question{'s' if remaining > 1 else ''} remaining in this session")
 
     prompt = st.text_input(
         "💬 Ask your question:",
