@@ -158,16 +158,49 @@ def create_sources_string(source_urls: Set[str]) -> str:
     return sources_string
 
 
+def get_theme_mode():
+    """Get current theme mode (light/dark)"""
+    try:
+        # Method 1: Check Streamlit's theme config
+        theme = st.get_option("theme.base")
+        if theme == "dark":
+            return "dark"
+        else:
+            return "light"
+    except Exception:
+        # Method 2: Fallback to checking background color
+        try:
+            background_color = st.get_option("theme.backgroundColor")
+            if background_color == "#0E1117":  # Streamlit dark mode background
+                return "dark"
+            else:
+                return "light"
+        except Exception:
+            return "light"  # Default to light
+
+
 def main():
     global MAX_CHAT_HISTORY, SUGGESTIONS
     # Set page config
     st.set_page_config(
         page_title="Khata Easy - AI Assistant",
-        page_icon="🤖",
+        page_icon="assets/favicon.ico",  # "https://khataeasy.com/favicon.ico",  # "🤖",
         layout="centered"
     )
 
+    # Add meta tags for SEO
+    st.markdown("""
+        <meta name="description" content="Khata Easy AI Assistant - Get instant answers about our secure accounting software, pricing, features, and how to get started. Available in multiple languages.">
+        <meta name="keywords" content="khata easy, accounting software, small business accounting, gst billing, inventory management, secure accounting, multi-language support">
+        <meta name="author" content="Khata Easy">
+        <meta property="og:title" content="Khata Easy - AI Assistant">
+        <meta property="og:description" content="Get instant answers about Khata Easy accounting software features, pricing, and security.">
+        <meta property="og:type" content="website">
+    """, unsafe_allow_html=True)
+
     print("Khata Easy - Helper AI Bot")
+    image_path = "assets/kp_logo_light.png" if get_theme_mode() == "light" else "assets/kp_logo.png"
+    st.image(image_path, width=150)
     st.header("Khata Easy - Helper AI Bot")
 
     # Rate limit configuration
