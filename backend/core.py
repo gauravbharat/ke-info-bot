@@ -102,9 +102,9 @@ def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
         "answer": result["answer"],
         "source_documents": result["context"],
     }
-    print("* RESULT *")
-    print(new_result["answer"])
-    print()
+    print("* RESULT SUCCESS *")
+    # print(new_result["answer"])
+    # print()
 
     return new_result
 
