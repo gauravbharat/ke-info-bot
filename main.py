@@ -46,7 +46,7 @@ SUGGESTIONS = {
 @st.dialog("Legal disclaimer")
 def show_disclaimer_dialog():
     st.caption("""
-            This AI chatbot is powered by Snowflake, Google Gemini and public Khata Easy
+            This AI chatbot is powered by Streamlit, Google Gemini and public Khata Easy
             information. Answers may be inaccurate, inefficient, or biased.
             Any use or decisions based on such answers should include reasonable
             practices including human oversight to ensure they are safe,
@@ -55,9 +55,9 @@ def show_disclaimer_dialog():
             of the chatbot. Do not enter any private, sensitive, personal, or
             regulated data. By using this chatbot, you acknowledge and agree
             that input you provide and answers you receive (collectively,
-            “Content”) may be used by Snowflake to provide, maintain, develop,
+            “Content”) may be used by Streamlit to provide, maintain, develop,
             and improve their respective offerings. For more
-            information on how Snowflake may use your Content, see
+            information on how Streamlit may use your Content, see
             https://streamlit.io/terms-of-service.
         """)
 
