@@ -19,3 +19,5 @@
 - **AI/LLM model**: Uses Google AI studio gemini-2.5-flash-lite model with API for _gaurav.mendse@gmail.com_
 - **Pinecone vector storage**: Uses API for _garydsouza80@gmail.com_
 ---
+### Ingestion
+- Execute ingestion.py to crawl website data and store in vector store.
