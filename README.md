@@ -15,9 +15,9 @@
 - UI would be generated using StreamLit
 ---
 ### Financials
-- **Embedding model**: Uses the OpenAI embedding model "text-embedding-3-small" with API for _pgmendse@gmail.com_
-- **AI/LLM model**: Uses Google AI studio gemini-2.5-flash-lite model with API for _gaurav.mendse@gmail.com_
-- **Pinecone vector storage**: Uses API for _garydsouza80@gmail.com_
+- **Embedding model**: Uses the OpenAI embedding model "text-embedding-3-small"
+- **AI/LLM model**: Uses Google AI studio gemini-2.5-flash-lite model
+- *Vector storage**: FAISS static
 ---
 ### Ingestion
 - Execute ingestion.py to crawl website data and store in vector store.
