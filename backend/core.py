@@ -41,13 +41,15 @@ def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
     # 2. init llm
     print("* STEP 2 *")
     print("Initialising GoogleGenerativeAI model gemini-2.5-flash-lite...")
-    llm = GoogleGenerativeAI(api_key=st.secrets.get("GOOGLE_API_KEY"), model="gemini-2.5-flash-lite")
+    llm = GoogleGenerativeAI(
+        api_key=st.secrets.get("GOOGLE_API_KEY"), model="gemini-2.5-flash-lite"
+    )
 
     # 3. create retrieval chat prompt and stuff documents
     print("* STEP 3 *")
     print("get the retrieval qa chat prompt...")
     # retrieval_qa_chat_prompt = hub.pull("langchain-ai/retrieval-qa-chat")
-    retrieval_qa_chat_prompt_template = '''
+    retrieval_qa_chat_prompt_template = """
       SYSTEM
       Answer any use questions based solely on the context below and use translation based on the question or input 
       language, use en or English by default if the input language is not known:
@@ -65,9 +67,11 @@ def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
       information, please visit https://khataeasy.com"  
       HUMAN
       {input}
-    '''
+    """
 
-    retrieval_qa_chat_prompt = PromptTemplate.from_template(retrieval_qa_chat_prompt_template)
+    retrieval_qa_chat_prompt = PromptTemplate.from_template(
+        retrieval_qa_chat_prompt_template
+    )
 
     print("create a chain that stuffs documents into retrieval chat prompt...")
     stuff_documents_chain = create_stuff_documents_chain(
@@ -78,13 +82,18 @@ def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
     print("* STEP 4 *")
     print("get the rephrase prompt...")
     rephrase_prompt = hub.pull("langchain-ai/chat-langchain-rephrase")
-    print("create history aware retriever with the llm, vector store as retriever and rephrase prompt...")
-    history_aware_retriever = create_history_aware_retriever(llm=llm, retriever=vector_store.as_retriever(),
-                                                             prompt=rephrase_prompt)
+    print(
+        "create history aware retriever with the llm, vector store as retriever and rephrase prompt..."
+    )
+    history_aware_retriever = create_history_aware_retriever(
+        llm=llm, retriever=vector_store.as_retriever(), prompt=rephrase_prompt
+    )
 
     # 5. create retrieval chain
     print("* STEP 5 *")
-    print("create retrieval chain passing the retriever as the history aware retrieve and stuffed docs chain...")
+    print(
+        "create retrieval chain passing the retriever as the history aware retrieve and stuffed docs chain..."
+    )
     qa = create_retrieval_chain(
         retriever=history_aware_retriever, combine_docs_chain=stuff_documents_chain
     )
@@ -108,8 +117,7 @@ def run_llm(query: str, chat_history: List[Dict[str, Any]] = []):
     return new_result
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     res = run_llm(query="subscription cost?", chat_history=[])
     # print(f"res: {res}")
     # gom: अॅप कसो वेगळो आसा
-

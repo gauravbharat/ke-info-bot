@@ -45,7 +45,8 @@ SUGGESTIONS = {
 
 @st.dialog("Legal disclaimer")
 def show_disclaimer_dialog():
-    st.caption("""
+    st.caption(
+        """
             This AI chatbot is powered by Streamlit, Google Gemini and public Khata Easy
             information. Answers may be inaccurate, inefficient, or biased.
             Any use or decisions based on such answers should include reasonable
@@ -59,7 +60,8 @@ def show_disclaimer_dialog():
             and improve their respective offerings. For more
             information on how Streamlit may use your Content, see
             https://streamlit.io/terms-of-service.
-        """)
+        """
+    )
 
 
 def generate_math_captcha():
@@ -67,12 +69,12 @@ def generate_math_captcha():
     # Generate random numbers for the math problem
     num1 = random.randint(1, 15)
     num2 = random.randint(1, 15)
-    operation = random.choice(['+', '-', '*'])
+    operation = random.choice(["+", "-", "*"])
 
-    if operation == '+':
+    if operation == "+":
         answer = num1 + num2
         problem = f"{num1} + {num2}"
-    elif operation == '-':
+    elif operation == "-":
         # Ensure positive result
         num1, num2 = max(num1, num2), min(num1, num2)
         answer = num1 - num2
@@ -91,9 +93,11 @@ def simple_math_captcha():
     if not st.session_state["captcha_verified"]:
         # Generate new CAPTCHA if needed or after 5 minutes
         current_time = time.time()
-        if ("captcha_problem" not in st.session_state or
-                "captcha_answer" not in st.session_state or
-                current_time - st.session_state["captcha_generated_time"] > 300):  # 5 minutes
+        if (
+            "captcha_problem" not in st.session_state
+            or "captcha_answer" not in st.session_state
+            or current_time - st.session_state["captcha_generated_time"] > 300
+        ):  # 5 minutes
 
             problem, answer = generate_math_captcha()
             st.session_state["captcha_problem"] = problem
@@ -115,11 +119,13 @@ def simple_math_captcha():
                 min_value=-100,
                 max_value=100,
                 step=1,
-                key="captcha_user_answer"
+                key="captcha_user_answer",
             )
 
             # Verify button
-            if st.button("✅ Verify I'm Human", type="primary", use_container_width=True):
+            if st.button(
+                "✅ Verify I'm Human", type="primary", use_container_width=True
+            ):
                 if answer == st.session_state["captcha_answer"]:
                     st.session_state["captcha_verified"] = True
                     st.session_state["captcha_verified_time"] = time.time()
@@ -138,11 +144,15 @@ def simple_math_captcha():
                     st.session_state["captcha_generated_time"] = time.time()
 
                     if st.session_state["captcha_attempts"] >= 3:
-                        st.warning("🚫 Multiple failed attempts. Please refresh the page.")
+                        st.warning(
+                            "🚫 Multiple failed attempts. Please refresh the page."
+                        )
                     else:
                         st.rerun()
 
-        st.info("💡 This helps us prevent automated bots and ensure quality service for all users.")
+        st.info(
+            "💡 This helps us prevent automated bots and ensure quality service for all users."
+        )
         return False
 
     return True
@@ -185,21 +195,28 @@ def main():
     st.set_page_config(
         page_title="Khata Easy - AI Assistant",
         page_icon="assets/favicon.ico",  # "https://khataeasy.com/favicon.ico",  # "🤖",
-        layout="centered"
+        layout="centered",
     )
 
     # Add meta tags for SEO
-    st.markdown("""
+    st.markdown(
+        """
         <meta name="description" content="Khata Easy AI Assistant - Get instant answers about our secure accounting software, pricing, features, and how to get started. Available in multiple languages.">
         <meta name="keywords" content="khata easy, accounting software, small business accounting, gst billing, inventory management, secure accounting, multi-language support">
         <meta name="author" content="Khata Easy">
         <meta property="og:title" content="Khata Easy - AI Assistant">
         <meta property="og:description" content="Get instant answers about Khata Easy accounting software features, pricing, and security.">
         <meta property="og:type" content="website">
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
     print("Khata Easy - Helper AI Bot")
-    image_path = "assets/kp_logo_light.png" if get_theme_mode() == "light" else "assets/kp_logo.png"
+    image_path = (
+        "assets/kp_logo_light.png"
+        if get_theme_mode() == "light"
+        else "assets/kp_logo.png"
+    )
     st.image(image_path, width=150)
     st.header("Khata Easy - Helper AI Bot")
 
@@ -208,7 +225,9 @@ def main():
 
     # Show usage status in sidebar
     st.sidebar.markdown("### 📊 Usage Status")
-    st.sidebar.write(f"**Questions asked:** {len(st.session_state['user_prompt_history'])}/{MAX_CHAT_HISTORY}")
+    st.sidebar.write(
+        f"**Questions asked:** {len(st.session_state['user_prompt_history'])}/{MAX_CHAT_HISTORY}"
+    )
 
     if current_usage >= MAX_CHAT_HISTORY:
         st.sidebar.error("🚨 Rate limit reached")
@@ -229,7 +248,8 @@ def main():
 
     # Check rate limit
     if current_usage >= MAX_CHAT_HISTORY:
-        st.error(f"""
+        st.error(
+            f"""
         🚨 **Rate Limit Reached**
 
         You've reached the maximum number of questions ({MAX_CHAT_HISTORY}) allowed in this session. 
@@ -238,7 +258,8 @@ def main():
         - 📚 Browse our documentation at [https://khataeasy.com](https://khataeasy.com)
 
         Thank you for understanding!
-        """)
+        """
+        )
         #         - 🔄 Refresh the page to start a new session
 
         # Show conversation history for reference
@@ -246,10 +267,14 @@ def main():
             st.markdown("---")
             st.subheader("📝 Your Conversation History")
             for user_query, gen_response in zip(
-                    reversed(st.session_state["user_prompt_history"]),
-                    reversed(st.session_state["chat_answers_history"])
+                reversed(st.session_state["user_prompt_history"]),
+                reversed(st.session_state["chat_answers_history"]),
             ):
-                with st.expander(f"Q: {user_query[:60]}..." if len(user_query) > 60 else f"Q: {user_query}"):
+                with st.expander(
+                    f"Q: {user_query[:60]}..."
+                    if len(user_query) > 60
+                    else f"Q: {user_query}"
+                ):
                     st.chat_message("user").write(user_query)
                     st.chat_message("assistant").write(gen_response)
 
@@ -272,7 +297,7 @@ def main():
     prompt = st.text_input(
         "💬 Ask your question:",
         placeholder="Type your question about Khata Easy here...",
-        key="question_input"
+        key="question_input",
     )
 
     if not prompt:
@@ -294,14 +319,15 @@ def main():
     if prompt and prompt != "":
         with st.spinner("🔍 Searching for the best answer..."):
             generated_response = run_llm(
-                query=prompt,
-                chat_history=st.session_state["chat_history"]
+                query=prompt, chat_history=st.session_state["chat_history"]
             )
 
-            sources = set([
-                doc.metadata["source"]
-                for doc in generated_response["source_documents"]
-            ])
+            sources = set(
+                [
+                    doc.metadata["source"]
+                    for doc in generated_response["source_documents"]
+                ]
+            )
 
             formatted_response = (
                 f"{generated_response['answer']} \n\n {create_sources_string(sources)}"
@@ -311,7 +337,9 @@ def main():
             st.session_state["user_prompt_history"].append(prompt)
             st.session_state["chat_answers_history"].append(formatted_response)
             st.session_state["chat_history"].append(("human", prompt))
-            st.session_state["chat_history"].append(("ai", generated_response['answer']))
+            st.session_state["chat_history"].append(
+                ("ai", generated_response["answer"])
+            )
 
             # Display conversation history
             if st.session_state["chat_answers_history"]:
@@ -319,8 +347,8 @@ def main():
                 st.subheader("📝 Conversation History")
 
                 for user_query, gen_response in zip(
-                        reversed(st.session_state["user_prompt_history"]),
-                        reversed(st.session_state["chat_answers_history"])
+                    reversed(st.session_state["user_prompt_history"]),
+                    reversed(st.session_state["chat_answers_history"]),
                 ):
                     st.chat_message("user").write(user_query)
                     st.chat_message("assistant").write(gen_response)
@@ -329,4 +357,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
