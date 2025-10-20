@@ -28,17 +28,17 @@ SUGGESTIONS = {
     ":blue[:material/local_library:] What is Khata Easy?": (
         "What is Khata Easy, what is it great at, and what can I do with it?"
     ),
-    ":green[:material/shield_lock:] How is my data stored and secured?": (
-        "how is my data stored and secured?"
+    ":green[:material/shield_lock:] મારો ડેટા કેવી રીતે સંગ્રહિત અને સુરક્ષિત છે?": (
+        "મારો ડેટા કેવી રીતે સંગ્રહિત અને સુરક્ષિત છે?"
     ),
     ":orange[:material/help:] What is the subscription cost?": (
         "what is the subscription cost?"
     ),
-    ":violet[:material/auto_awesome:] What is the 2-step pin?": (
-        "what is the 2-step pin?"
+    ":violet[:material/auto_awesome:] वैशिष्ट्ये काय आहेत?": (
+        "वैशिष्ट्ये काय आहेत?"
     ),
     ":red[:material/rocket_launch:] मैं ऐप का उपयोग कैसे प्रारंभ करूँ?": (
-        "इस ऐप को क्या अलग बनाता है? मैं ऐप का उपयोग कैसे प्रारंभ करूँ?"
+        "ऐप का उपयोग"
     ),
 }
 
