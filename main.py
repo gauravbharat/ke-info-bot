@@ -28,17 +28,17 @@ SUGGESTIONS = {
     ":blue[:material/local_library:] What is Khata Easy?": (
         "What is Khata Easy, what is it great at, and what can I do with it?"
     ),
-    ":green[:material/shield_lock:] મારો ડેટા ક્યાં સંગ્રહિત છે અને તે કેટલો સુરક્ષિત છે?": (
-        "મારો ડેટા ક્યાં સંગ્રહિત છે અને તે કેટલો સુરક્ષિત છે?"
+    ":green[:material/shield_lock:] How is my data stored and secured?": (
+        "how is my data stored and secured?"
     ),
-    ":orange[:material/help:] हे अ‍ॅप मला काय करण्यास मदत करते?": (
-        "हे अ‍ॅप मला काय करण्यास मदत करते?"
+    ":orange[:material/help:] What is the subscription cost?": (
+        "what is the subscription cost?"
+    ),
+    ":violet[:material/auto_awesome:] What is the 2-step pin?": (
+        "what is the 2-step pin?"
     ),
     ":red[:material/rocket_launch:] मैं ऐप का उपयोग कैसे प्रारंभ करूँ?": (
         "इस ऐप को क्या अलग बनाता है? मैं ऐप का उपयोग कैसे प्रारंभ करूँ?"
-    ),
-    ":violet[:material/auto_awesome:] हो ऍप्लिकेशन कित्याक वेगळो?": (
-        "हो ऍप्लिकेशन कित्याक वेगळो?"
     ),
 }
 
@@ -164,7 +164,7 @@ def create_sources_string(source_urls: Set[str]) -> str:
     sources_list = list(source_urls)
     sources_string = "sources:\n"
     for i, source in enumerate(sources_list):
-        sources_string += f"- {source}\n"
+        sources_string += f"- {source.replace('?refresh=fullcrawl', '')}\n"
     return sources_string
 
 
