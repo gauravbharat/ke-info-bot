@@ -34,8 +34,8 @@ SUGGESTIONS = {
     ":orange[:material/help:] What is the subscription cost?": (
         "what is the subscription cost?"
     ),
-    ":violet[:material/auto_awesome:] वैशिष्ट्ये काय आहेत?": (
-        "वैशिष्ट्ये काय आहेत?"
+    ":violet[:material/auto_awesome:] 会计数据是如何存储的？": (
+        "会计数据是如何存储的？"
     ),
     ":red[:material/rocket_launch:] मैं ऐप का उपयोग कैसे प्रारंभ करूँ?": (
         "ऐप का उपयोग"

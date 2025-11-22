@@ -114,10 +114,12 @@ def detect_user_language(text: str) -> str:
         "gu": "gu",  # Gujarati
         "hi": "hi",  # Hindi
         "mr": "mr",  # Marathi
+        "zh": "zh",  # Chinese Simplified
         "other": "en",  # Default to English if detection is uncertain
     }
 
     try:
+
         detected_lang, confidence_score = langid.classify(text)
 
         # langid returns negative log-likelihood - LOWER values are better
